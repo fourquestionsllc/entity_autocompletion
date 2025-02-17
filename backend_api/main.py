@@ -16,7 +16,14 @@ app.add_middleware(
 )
 
 # Sample keywords
-KEYWORDS = ["Machine Learning", "Gen AI", "Big Data", "Data Engineering", "Spark", "Python",]
+KEYWORDS = ["Machine Learning", "Gen AI", "Google", "Amazon"]
+
+meta_data = {
+    "Machine Learning":"Skill",
+    "Gen AI":"Skill",
+    "Google":"Company",
+    "Amazon":"Company",
+}
 
 class KeywordRequest(BaseModel):
     query: str
@@ -24,4 +31,10 @@ class KeywordRequest(BaseModel):
 @app.post("/match_keywords")
 def match_keywords(request: KeywordRequest):
     matches = get_close_matches(request.query, KEYWORDS, n=5, cutoff=0.1)
-    return {"matches": matches}
+    output = []
+    for n in matches:
+        output.append({
+            "entity_name":n,
+            "entity_type":meta_data[n]
+            })
+    return output

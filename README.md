@@ -11,15 +11,15 @@ check the service at http://127.0.0.1:8000/docs
 ## create a app
 
 ```bash
-npm create vite@latest ui-entity-completion --template react
+npx create-react-app my-app
 ```
 
 ## start the ui app
 
 ```base
-cd ui-entity-completion
-npm install
-npm run dev
+cd my-app
+npm install axios
+npm start
 ```
 
-see the app at  http://localhost:5173/
+see the app at  http://localhost:3000/
